@@ -10,14 +10,14 @@ namespace Todo.Controllers
     {
         [HttpGet]
         [Route ("")]
-        public IActionResult Get ([FromServices] AppDbContext context)
+        public IActionResult ListarTarefas ([FromServices] AppDbContext context)
         {
             return Ok(context.Todos.ToList());
         }
 
         [HttpGet]
         [Route ("{id:int}")]
-        public IActionResult GetById ([FromRoute] int id, [FromServices] AppDbContext context)
+        public IActionResult BuscarTarefa ([FromRoute] int id, [FromServices] AppDbContext context)
         {
             var todos = context.Todos.FirstOrDefault(x => x.Id == id);
                 if(todos == null)
@@ -28,7 +28,7 @@ namespace Todo.Controllers
 
         [HttpPost]
         [Route ("")]
-        public IActionResult Post ([FromServices] AppDbContext context, [FromBody] TodoModel TodoItem)
+        public IActionResult CriarTarefa ([FromServices] AppDbContext context, [FromBody] TodoModel TodoItem)
         {   
             context.Todos.Add(TodoItem);
             context.SaveChanges();
