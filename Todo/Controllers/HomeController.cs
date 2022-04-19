@@ -9,14 +9,14 @@ namespace ToDo.Controllers
     public class HomeController : ControllerBase
     {
         [HttpGet]
-        [Route ("Lista")]
+        [Route ("listar")]
         public IActionResult ListarTarefas ([FromServices] AppDbContext context)
         {
             return Ok(context.Tarefas.ToList());
         }
 
         [HttpGet]
-        [Route ("Buscar/{id:int}")]
+        [Route ("buscar/{id:int}")]
         public IActionResult BuscarTarefa ([FromRoute] int id, [FromServices] AppDbContext context)
         {
             var tarefa = context.Tarefas.FirstOrDefault(x => x.Id == id);
@@ -26,7 +26,7 @@ namespace ToDo.Controllers
         }
 
         [HttpPost]
-        [Route ("Cadastrar")]
+        [Route ("cadastrar")]
         public IActionResult CadastrarTarefa ([FromServices] AppDbContext context, [FromBody] Tarefa tarefa)
         {   
             context.Tarefas.Add(tarefa);
@@ -36,15 +36,15 @@ namespace ToDo.Controllers
         }
 
         [HttpPut]
-        [Route ("Alterar/{id:int}")]
-        public IActionResult AlterarTarefa ([FromRoute] int id, [FromServices] AppDbContext context, [FromBody] string titulo)
+        [Route ("alterar")]
+        public IActionResult AlterarTarefa ([FromServices] AppDbContext context, [FromBody] Tarefa tarefa)
         {   
-            var model = context.Tarefas.FirstOrDefault(x => x.Id == id);
+            var model = context.Tarefas.FirstOrDefault(x => x.Id == tarefa.Id);
             
             if(model == null)
                 return NotFound();
 
-            model.Titulo = titulo;
+            model.Titulo = tarefa.Titulo;
 
             context.Tarefas.Update(model);
             context.SaveChanges();
@@ -53,7 +53,7 @@ namespace ToDo.Controllers
         }
 
         [HttpPut]
-        [Route ("Concluir/{id:int}")]
+        [Route ("concluir/{id:int}")]
         public IActionResult ConcluirTarefa ([FromRoute] int id, [FromServices] AppDbContext context)
         {   
             var model = context.Tarefas.FirstOrDefault(x => x.Id == id);
@@ -70,7 +70,7 @@ namespace ToDo.Controllers
         }
 
         [HttpDelete]
-        [Route ("Deletar/{id:int}")]
+        [Route ("deletar/{id:int}")]
         public IActionResult DeletarTarefa ([FromRoute] int id, [FromServices] AppDbContext context)
         {   
             var model = context.Tarefas.FirstOrDefault(x => x.Id == id);
