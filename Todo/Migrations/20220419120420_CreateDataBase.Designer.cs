@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Todo.Data;
+using ToDo.Data;
 
 #nullable disable
 
-namespace Todo.Migrations
+namespace ToDo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220418132213_CreateDataBase")]
+    [Migration("20220419120420_CreateDataBase")]
     partial class CreateDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,25 +19,25 @@ namespace Todo.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
 
-            modelBuilder.Entity("Todo.Models.TodoModel", b =>
+            modelBuilder.Entity("ToDo.Models.Tarefa", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("Done")
+                    b.Property<bool>("Concluido")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Title")
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Todos");
+                    b.ToTable("Tarefas");
                 });
 #pragma warning restore 612, 618
         }

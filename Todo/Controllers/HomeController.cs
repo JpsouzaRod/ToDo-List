@@ -1,69 +1,84 @@
 using Microsoft.AspNetCore.Mvc;
-using Todo.Data;
-using Todo.Models;
+using ToDo.Data;
+using ToDo.Models;
 
-namespace Todo.Controllers
+namespace ToDo.Controllers
 {   
     [ApiController]
     [Route ("home")]
     public class HomeController : ControllerBase
     {
         [HttpGet]
-        [Route ("")]
+        [Route ("Lista")]
         public IActionResult ListarTarefas ([FromServices] AppDbContext context)
         {
-            return Ok(context.Todos.ToList());
+            return Ok(context.Tarefas.ToList());
         }
 
         [HttpGet]
-        [Route ("{id:int}")]
+        [Route ("Buscar/{id:int}")]
         public IActionResult BuscarTarefa ([FromRoute] int id, [FromServices] AppDbContext context)
         {
-            var todos = context.Todos.FirstOrDefault(x => x.Id == id);
-                if(todos == null)
+            var tarefa = context.Tarefas.FirstOrDefault(x => x.Id == id);
+                if(tarefa == null)
                     NotFound();
-
-                return Ok(todos);
+                return Ok(tarefa);
         }
 
         [HttpPost]
-        [Route ("")]
-        public IActionResult CriarTarefa ([FromServices] AppDbContext context, [FromBody] TodoModel TodoItem)
+        [Route ("Cadastrar")]
+        public IActionResult CadastrarTarefa ([FromServices] AppDbContext context, [FromBody] Tarefa tarefa)
         {   
-            context.Todos.Add(TodoItem);
+            context.Tarefas.Add(tarefa);
             context.SaveChanges();
 
-            return Ok(TodoItem);            
+            return Ok(tarefa);            
         }
 
         [HttpPut]
-        [Route ("{id:int}")]
-        public IActionResult AlterarTarefa ([FromRoute] int id, [FromServices] AppDbContext context, [FromBody] TodoModel TodoItem)
+        [Route ("Alterar/{id:int}")]
+        public IActionResult AlterarTarefa ([FromRoute] int id, [FromServices] AppDbContext context, [FromBody] string titulo)
         {   
-            var model = context.Todos.FirstOrDefault(x => x.Id == id);
+            var model = context.Tarefas.FirstOrDefault(x => x.Id == id);
             
             if(model == null)
                 return NotFound();
 
-            model.Title = TodoItem.Title;
-            model.Done = TodoItem.Done;
+            model.Titulo = titulo;
 
-            context.Todos.Update(model);
+            context.Tarefas.Update(model);
+            context.SaveChanges();
+
+            return Ok(model);            
+        }
+
+        [HttpPut]
+        [Route ("Concluir/{id:int}")]
+        public IActionResult ConcluirTarefa ([FromRoute] int id, [FromServices] AppDbContext context)
+        {   
+            var model = context.Tarefas.FirstOrDefault(x => x.Id == id);
+            
+            if(model == null)
+                return NotFound();
+
+            model.Concluido = true;
+
+            context.Tarefas.Update(model);
             context.SaveChanges();
 
             return Ok(model);            
         }
 
         [HttpDelete]
-        [Route ("{id:int}")]
+        [Route ("Deletar/{id:int}")]
         public IActionResult DeletarTarefa ([FromRoute] int id, [FromServices] AppDbContext context)
         {   
-            var model = context.Todos.FirstOrDefault(x => x.Id == id);
+            var model = context.Tarefas.FirstOrDefault(x => x.Id == id);
 
             if (model == null)
                 return NotFound();
             
-            context.Todos.Remove(model);
+            context.Tarefas.Remove(model);
             context.SaveChanges();
 
             return Ok(model);            
