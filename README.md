@@ -28,14 +28,6 @@ Requisições para a API devem seguir os padrões:
   POST   /home/cadastrar
 ```
 
-Body
-```json
-    {
-        "id": int,
-        "titulo": "string"
-    }
-```
-
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
 | `id` | `int   ` | Identificação da tarefa |
