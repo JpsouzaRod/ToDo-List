@@ -82,7 +82,7 @@ Requisições para a API devem seguir os padrões:
 ## Stack utilizada
 **Back-end:** .Net, C#
 
-**Danco de Dados:** Sqlite 
+**Banco de Dados:** Sqlite 
 
 
 ## Autores
