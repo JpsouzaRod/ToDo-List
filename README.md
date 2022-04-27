@@ -24,9 +24,10 @@ Requisições para a API devem seguir os padrões:
 
 #### Cadastra uma tarefa
 
-```http
+```txt
   POST   /home/cadastrar
 ```
+
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
@@ -35,12 +36,12 @@ Requisições para a API devem seguir os padrões:
 
 #### Retorna uma lista de tarefas
 
-```http
+```txt
   GET /home/
 ```
 #### Retorna uma tarefa
 
-```http
+```txt
   GET /home/{id}
 ```
 | Parâmetro   | Tipo       | Descrição                           |
@@ -49,7 +50,7 @@ Requisições para a API devem seguir os padrões:
 
 #### Conclui uma tarefa
 
-```http
+```txt
   PUT /home/concluir/{id}
 ```
 | Parâmetro   | Tipo       | Descrição                           |
@@ -58,7 +59,7 @@ Requisições para a API devem seguir os padrões:
 
 #### Altera uma tarefa
 
-```http
+```txt
   PUT /home/alterar
 ```
 | Parâmetro   | Tipo       | Descrição                           |
@@ -68,7 +69,7 @@ Requisições para a API devem seguir os padrões:
 
 #### Deleta uma tarefa
 
-```http
+```txt
   DELETE /home/deletar/{id}
 ```
 | Parâmetro   | Tipo       | Descrição                           |
