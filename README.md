@@ -3,10 +3,37 @@
 O To Do List é um sistema de gerenciamento de tarefas para organização das atividades da semana. O sistema permitirá que o usuário possa cadastrar, alterar, concluir e vizualizar tarefas salvas no sistema.
 ## Documentação da API
 
+## Métodos
+Requisições para a API devem seguir os padrões:
+| Método | Descrição |
+|---|---|
+| `GET` | Retorna informações de um ou mais registros. |
+| `POST` | Utilizado para criar um novo registro. |
+| `PUT` | Atualiza dados de um registro ou altera sua situação. |
+| `DELETE` | Remove um registro do sistema. |
+
+
+## Respostas
+
+| Código | Descrição |
+|---|---|
+| `200` | Requisição executada com sucesso (success).|
+| `400` | Erros de validação ou os campos informados não existem no sistema.|
+| `401` | Dados de acesso inválidos.|
+
+
 #### Cadastra uma tarefa
 
 ```http
-  POST /home/cadastrar
+  POST   /home/cadastrar
+```
+
+Body
+```json
+    {
+        "id": int,
+        "titulo": "string"
+    }
 ```
 
 | Parâmetro   | Tipo       | Descrição                           |
