@@ -86,6 +86,12 @@ Body
 
 
 
+## Stack utilizada
+**Back-end:** .Net, C#
+
+**Danco de Dados:** Sqlite 
+
+
 ## Autores
 
 - [@jpsouza-rod](https://www.github.com/jpsouza-rod)
