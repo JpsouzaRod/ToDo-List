@@ -33,6 +33,15 @@ Requisições para a API devem seguir os padrões:
   POST   /home/cadastrar
 ```
 
+#### Request JSON
+
+```json
+  {
+    "id": 0,
+    "titulo": "string"
+  }
+```
+
 #### Retorna uma lista de tarefas
 
 ```txt
