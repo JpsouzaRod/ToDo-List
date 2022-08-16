@@ -21,18 +21,17 @@ Requisições para a API devem seguir os padrões:
 | `400` | Erros de validação ou os campos informados não existem no sistema.|
 | `401` | Dados de acesso inválidos.|
 
+## Parametros
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `int   ` | Identificação da tarefa |
+| `Titulo` | `string` |  Titulo da tarefa |
 
 #### Cadastra uma tarefa
 
 ```txt
   POST   /home/cadastrar
 ```
-
-
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `id` | `int   ` | Identificação da tarefa |
-| `Titulo` | `string` |  Titulo da tarefa |
 
 #### Retorna uma lista de tarefas
 
@@ -44,39 +43,21 @@ Requisições para a API devem seguir os padrões:
 ```txt
   GET /home/{id}
 ```
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `id` | `int   ` | Identificação da tarefa |
-
 #### Conclui uma tarefa
 
 ```txt
   PUT /home/concluir/{id}
 ```
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `id` | `int   ` | Identificação da tarefa |
-
 #### Altera uma tarefa
 
 ```txt
   PUT /home/alterar
 ```
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `id` | `int   ` | Identificação da tarefa |
-| `Titulo` | `string` |  Titulo da tarefa |
-
 #### Deleta uma tarefa
 
 ```txt
   DELETE /home/deletar/{id}
 ```
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `id` | `int   ` | Identificação da tarefa |
-
-
 
 
 ## Stack utilizada
